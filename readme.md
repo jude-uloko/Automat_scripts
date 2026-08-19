@@ -38,6 +38,14 @@ A collection of PowerShell scripts for everyday automation and productivity.
 | `Set-EnvVars.ps1` | Sets environment variables in bulk from a simple config file. |
 | `Backup-DotFiles.ps1` | Backs up PowerShell profile, VS Code settings, git config, etc. |
 | `Remind-Me.ps1` | Shows a popup reminder after a delay or at a specific time. |
+| `Get-FileHashCheck.ps1` | Computes/verifies file checksums (MD5, SHA1, SHA256, SHA512). |
+| `Find-DuplicateFiles.ps1` | Finds duplicate files by content hash, with optional auto-delete. |
+| `Sync-Folders.ps1` | Syncs/mirrors one folder to another using Robocopy. |
+| `Test-OpenPorts.ps1` | Scans a host for open TCP ports in a given range. |
+| `Backup-Registry.ps1` | Exports a registry key or full registry backup before risky changes. |
+| `Check-WindowsUpdates.ps1` | Checks for available Windows updates. |
+| `Get-USBDeviceHistory.ps1` | Lists currently connected and historical USB devices. |
+| `Get-UptimeReport.ps1` | Reports current uptime and recent shutdown/restart history. |
 
 ## Usage
 
@@ -69,6 +77,10 @@ A few scripts rely on external tools that aren't built into Windows:
 ## Security Note
 
 `Get-WifiPasswords.ps1` reveals saved network passwords in plain text. Only run it on your own machine, and be careful where you save/share the output.
+
+`Test-OpenPorts.ps1` should only be pointed at hosts you own or have explicit permission to scan — scanning networks you don't control may violate terms of service or local law.
+
+`Find-DuplicateFiles.ps1` with `-DeleteDuplicates` and `Sync-Folders.ps1` with `-Mirror` both delete files. Test on a non-critical folder first, or review the log/dry-run output before trusting them on important data.
 
 Check each script's header comment (`Get-Help .\ScriptName.ps1 -Full`) for full parameter details.
 
