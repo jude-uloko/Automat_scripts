@@ -31,6 +31,13 @@ A collection of PowerShell scripts for everyday automation and productivity.
 | `Watch-Folder.ps1` | Watches a folder and auto-moves new files as they arrive. |
 | `Clone-AllRepos.ps1` | Clones a list of git repos from a text file. |
 | `Check-DiskHealth.ps1` | Checks SMART health status of all physical drives. |
+| `Export-OutlookAttachments.ps1` | Saves all email attachments from an Outlook folder locally. |
+| `Set-WallpaperFromWeb.ps1` | Downloads a random image and sets it as desktop wallpaper. |
+| `Start-WorkSession.ps1` | Launches your usual work apps and browser tabs at once. |
+| `Get-WifiPasswords.ps1` | Shows saved WiFi networks and their passwords (admin required). |
+| `Set-EnvVars.ps1` | Sets environment variables in bulk from a simple config file. |
+| `Backup-DotFiles.ps1` | Backs up PowerShell profile, VS Code settings, git config, etc. |
+| `Remind-Me.ps1` | Shows a popup reminder after a delay or at a specific time. |
 
 ## Usage
 
@@ -55,6 +62,13 @@ Some accept parameters, e.g.:
 A few scripts rely on external tools that aren't built into Windows:
 - `Merge-PDFs.ps1` requires [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) (`winget install PDFLabs.PDFtk`)
 - `Install-DevTools.ps1` requires `winget` (built into modern Windows 10/11)
+- `Export-OutlookAttachments.ps1` requires Outlook desktop app installed
+- `Get-WifiPasswords.ps1` must be run as Administrator
+- Edit the app/URL/config lists inside `Start-WorkSession.ps1` and `Backup-DotFiles.ps1` to match your own setup before running
+
+## Security Note
+
+`Get-WifiPasswords.ps1` reveals saved network passwords in plain text. Only run it on your own machine, and be careful where you save/share the output.
 
 Check each script's header comment (`Get-Help .\ScriptName.ps1 -Full`) for full parameter details.
 
