@@ -21,6 +21,16 @@ A collection of PowerShell scripts for everyday automation and productivity.
 | `Get-BatteryHealth.ps1` | Generates and opens a Windows battery health report. |
 | `Toggle-DarkMode.ps1` | Switches Windows between light/dark theme. |
 | `List-StartupPrograms.ps1` | Lists all programs configured to run at startup. |
+| `Install-DevTools.ps1` | Installs a standard dev toolkit (Git, VS Code, Node, Python, etc.) via winget. |
+| `Merge-PDFs.ps1` | Merges all PDFs in a folder into one, using pdftk. |
+| `Compress-Images.ps1` | Bulk resizes/compresses images to reduce file size. |
+| `Extract-Archives.ps1` | Extracts all .zip files in a folder into their own subfolders. |
+| `Rename-MediaByDate.ps1` | Renames photos/videos using EXIF or file creation date. |
+| `Get-EventLogErrors.ps1` | Pulls recent Critical/Error events from Windows Event Viewer. |
+| `Watch-ProcessCPU.ps1` | Logs top CPU/RAM-consuming processes at intervals. |
+| `Watch-Folder.ps1` | Watches a folder and auto-moves new files as they arrive. |
+| `Clone-AllRepos.ps1` | Clones a list of git repos from a text file. |
+| `Check-DiskHealth.ps1` | Checks SMART health status of all physical drives. |
 
 ## Usage
 
@@ -36,7 +46,15 @@ Some accept parameters, e.g.:
 .\Backup-Folder.ps1 -SourcePath "C:\Projects\MyApp" -DestinationPath "D:\Backups"
 .\Find-LargeFiles.ps1 -Path "D:\" -Top 30
 .\New-SecurePassword.ps1 -Length 20 -Count 5
+.\Merge-PDFs.ps1 -Path "C:\Reports" -OutputFile "C:\Reports\Combined.pdf"
+.\Watch-Folder.ps1 -Path "C:\Scans" -DestinationPath "C:\Scans\Processed"
 ```
+
+## Dependencies
+
+A few scripts rely on external tools that aren't built into Windows:
+- `Merge-PDFs.ps1` requires [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) (`winget install PDFLabs.PDFtk`)
+- `Install-DevTools.ps1` requires `winget` (built into modern Windows 10/11)
 
 Check each script's header comment (`Get-Help .\ScriptName.ps1 -Full`) for full parameter details.
 
