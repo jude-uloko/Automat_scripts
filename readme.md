@@ -95,3 +95,76 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ## Disclaimer
 
 Scripts that delete, move, or modify files (`Clean-System.ps1`, `Remove-EmptyFolders.ps1`, `Sort-DownloadsFolder.ps1`, etc.) should be reviewed before running on important data. Consider testing on a non-critical folder first.
+
+-----------------
+
+# toolbox.cmd - All-in-one task dispatcher for CMD environment
+
+One script, every task, called by name. No need to hunt for individual .cmd files anymore.
+
+## Usage
+
+```cmd
+toolbox.cmd taskname
+toolbox.cmd task1 task2 task3
+toolbox.cmd killtask chrome.exe
+toolbox.cmd flushdns cleartemp emptybin
+```
+
+Run with no arguments (or `toolbox.cmd help`) to see the full list of tasks in the console.
+
+## Examples
+
+```cmd
+:: Single task
+toolbox.cmd flushdns
+
+:: Multiple tasks in one run, in order
+toolbox.cmd cleartemp emptybin restartexplorer
+
+:: Tasks that need arguments
+toolbox.cmd killtask chrome.exe
+toolbox.cmd backup "C:\Projects\MyApp" "D:\Backups"
+toolbox.cmd rename "C:\Photos" "vacation_"
+toolbox.cmd shutdowntimer 30
+toolbox.cmd pinglog 1.1.1.1
+toolbox.cmd mapdrive Z: \\server\share
+toolbox.cmd createtask "DailyBackup" "22:00" "C:\Scripts\backup.exe"
+
+:: Mixing simple and argument-taking tasks together
+toolbox.cmd cleartemp killtask chrome.exe emptybin
+```
+
+## Task categories
+
+- **System Maintenance** - flushdns, cleartemp, emptybin, restartexplorer, sleep, lockpc, logoff, cancelshutdown, adminrights, shutdowntimer, autolock
+- **Network** - checkconn, showip, listports, macaddress, pinglog, mapdrive, unmapdrive, firewallblock, firewallunblock
+- **Files/Folders** - backup, rename, countfiles, findbyext, comparefolders, setreadonly, sethidden
+- **Process/Services** (admin) - killtask, listservices, startservice, stopservice
+- **Scheduling** - createtask, deletetask, listtasks
+- **User Accounts** (admin) - listusers, enableuser, disableuser, forcepwchange
+- **Hardware/System Info** - gpuinfo, raminfo, biosinfo, listprograms
+- **Misc** - screenshot, clip2file, devmgmt, diskmgmt, controlpanel, openworkspace
+
+Run `toolbox.cmd help` any time for the full list with argument syntax.
+
+## Notes
+
+- **Admin required**: firewallblock/unblock, startservice/stopservice, enableuser/disableuser/forcepwchange, and some registry/service operations need "Run as administrator."
+- **Edit before use**: `openworkspace` has placeholder app paths — edit them near the bottom of the script for your own setup.
+- **wmic-based tasks** (`gpuinfo`, `raminfo`, `biosinfo`, `listprograms`) rely on the `wmic` command, which Microsoft has deprecated in newer Windows builds. If it's missing on your system, these will fail — let me know and I can rewrite them using PowerShell CIM cmdlets instead.
+- **checkconn** runs in an infinite loop — press Ctrl+C to stop it. Since it's inside a task dispatcher, run it as your only argument (`toolbox.cmd checkconn`) rather than mixing it with other tasks, since it will block anything queued after it.
+- Tasks that delete, shut down, or modify accounts act immediately once called — double check arguments, especially with `backup`, `rename`, `killtask`, and the account/service management tasks.
+
+## Adding your own tasks
+
+Each task is just a labeled block:
+
+```bat
+:mytask
+echo Doing something...
+goto :eof
+```
+
+Add your label anywhere in the file, then add a line in the dispatcher (`:parse` section) if it needs arguments, or just call it directly by name if it doesn't — the generic `call :%task%` fallback picks up any zero-argument label automatically.
+
