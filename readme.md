@@ -1,61 +1,144 @@
-# PowerShell Scripts
+<div align="center">
 
-A collection of PowerShell scripts for everyday automation and productivity.
+# ⚡ Windows Automation Toolkit
 
-## Scripts
+**A personal collection of PowerShell and CMD scripts for everyday automation, system maintenance, and getting things done fast.**
+
+![PowerShell](https://img.shields.io/badge/PowerShell-5391FE?style=flat&logo=powershell&logoColor=white)
+![CMD](https://img.shields.io/badge/CMD-Batch-4D4D4D?style=flat&logo=windowsterminal&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat&logo=windows&logoColor=white)
+![Scripts](https://img.shields.io/badge/Scripts-56+-brightgreen?style=flat)
+
+</div>
+
+---
+
+## 📁 Repo Structure
+
+All scripts sit flat at the repo root — clone it, and everything is one folder deep.
+
+```
+.
+├── toolbox.cmd              All-in-one CMD dispatcher — run any task by name
+├── toolbox_README.md        Full usage guide for the dispatcher
+├── *.ps1                    40 standalone PowerShell scripts
+├── *.cmd                    16 standalone CMD scripts
+└── README.md                You are here
+```
+
+## 🚀 Quick Start
+
+**PowerShell scripts** — run individually from the repo root:
+```powershell
+.\Clean-System.ps1
+.\Backup-Folder.ps1 -SourcePath "C:\Projects\MyApp" -DestinationPath "D:\Backups"
+```
+
+**CMD scripts** — run one command for anything, single or chained:
+```cmd
+toolbox.cmd flushdns cleartemp emptybin
+toolbox.cmd killtask chrome.exe
+toolbox.cmd help
+```
+
+> If PowerShell scripts are blocked from running, allow them for your session:
+> ```powershell
+> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+> ```
+
+---
+
+## 🧰 PowerShell Scripts
+
+<details>
+<summary><strong>System Maintenance</strong></summary>
 
 | Script | Description |
 |---|---|
 | `Clean-System.ps1` | Clears temp files, recycle bin, browser caches. Logs space freed. |
 | `Get-SystemInfo.ps1` | Reports CPU, RAM, disk, and network info to console + file. |
-| `Backup-Folder.ps1` | Zips a folder into a date-stamped backup archive. |
-| `Find-LargeFiles.ps1` | Scans a path and lists the largest files, exports to CSV. |
-| `New-ProjectFolder.ps1` | Scaffolds a new project folder (src/docs/tests, README, git init). |
-| `Test-InternetConnection.ps1` | Monitors connectivity, logs downtime with timestamps. |
-| `Rename-BatchFiles.ps1` | Bulk renames files: prefix/suffix or sequential numbering. |
-| `Sort-DownloadsFolder.ps1` | Auto-sorts a folder's files into subfolders by type. |
-| `Remove-EmptyFolders.ps1` | Recursively finds/removes empty folders (supports -WhatIf). |
-| `Git-QuickCommit.ps1` | Adds, commits, and pushes git changes in one command. |
-| `Get-PublicIP.ps1` | Shows your public IP and basic geolocation. |
-| `New-SecurePassword.ps1` | Generates cryptographically random strong passwords. |
-| `Get-BatteryHealth.ps1` | Generates and opens a Windows battery health report. |
-| `Toggle-DarkMode.ps1` | Switches Windows between light/dark theme. |
-| `List-StartupPrograms.ps1` | Lists all programs configured to run at startup. |
-| `Install-DevTools.ps1` | Installs a standard dev toolkit (Git, VS Code, Node, Python, etc.) via winget. |
-| `Merge-PDFs.ps1` | Merges all PDFs in a folder into one, using pdftk. |
-| `Compress-Images.ps1` | Bulk resizes/compresses images to reduce file size. |
-| `Extract-Archives.ps1` | Extracts all .zip files in a folder into their own subfolders. |
-| `Rename-MediaByDate.ps1` | Renames photos/videos using EXIF or file creation date. |
-| `Get-EventLogErrors.ps1` | Pulls recent Critical/Error events from Windows Event Viewer. |
-| `Watch-ProcessCPU.ps1` | Logs top CPU/RAM-consuming processes at intervals. |
-| `Watch-Folder.ps1` | Watches a folder and auto-moves new files as they arrive. |
-| `Clone-AllRepos.ps1` | Clones a list of git repos from a text file. |
 | `Check-DiskHealth.ps1` | Checks SMART health status of all physical drives. |
-| `Export-OutlookAttachments.ps1` | Saves all email attachments from an Outlook folder locally. |
-| `Set-WallpaperFromWeb.ps1` | Downloads a random image and sets it as desktop wallpaper. |
-| `Start-WorkSession.ps1` | Launches your usual work apps and browser tabs at once. |
-| `Get-WifiPasswords.ps1` | Shows saved WiFi networks and their passwords (admin required). |
+| `Check-WindowsUpdates.ps1` | Checks for available Windows updates. |
+| `Get-BatteryHealth.ps1` | Generates and opens a Windows battery health report. |
+| `Get-UptimeReport.ps1` | Reports current uptime and recent shutdown/restart history. |
+| `Get-EventLogErrors.ps1` | Pulls recent Critical/Error events from Windows Event Viewer. |
+| `List-StartupPrograms.ps1` | Lists all programs configured to run at startup. |
+| `Watch-ProcessCPU.ps1` | Logs top CPU/RAM-consuming processes at intervals. |
+| `Toggle-DarkMode.ps1` | Switches Windows between light/dark theme. |
+
+</details>
+
+<details>
+<summary><strong>Files & Folders</strong></summary>
+
+| Script | Description |
+|---|---|
+| `Backup-Folder.ps1` | Zips a folder into a date-stamped backup archive. |
+| `Sync-Folders.ps1` | Syncs/mirrors one folder to another using Robocopy. |
+| `Find-LargeFiles.ps1` | Scans a path and lists the largest files, exports to CSV. |
+| `Find-DuplicateFiles.ps1` | Finds duplicate files by content hash, with optional auto-delete. |
+| `Get-FileHashCheck.ps1` | Computes/verifies file checksums (MD5, SHA1, SHA256, SHA512). |
+| `Remove-EmptyFolders.ps1` | Recursively finds/removes empty folders (supports `-WhatIf`). |
+| `Rename-BatchFiles.ps1` | Bulk renames files: prefix/suffix or sequential numbering. |
+| `Rename-MediaByDate.ps1` | Renames photos/videos using EXIF or file creation date. |
+| `Sort-DownloadsFolder.ps1` | Auto-sorts a folder's files into subfolders by type. |
+| `Extract-Archives.ps1` | Extracts all .zip files in a folder into their own subfolders. |
+| `Compress-Images.ps1` | Bulk resizes/compresses images to reduce file size. |
+| `Merge-PDFs.ps1` | Merges all PDFs in a folder into one, using pdftk. |
+| `Watch-Folder.ps1` | Watches a folder and auto-moves new files as they arrive. |
+
+</details>
+
+<details>
+<summary><strong>Dev Workflow</strong></summary>
+
+| Script | Description |
+|---|---|
+| `New-ProjectFolder.ps1` | Scaffolds a new project folder (src/docs/tests, README, git init). |
+| `Git-QuickCommit.ps1` | Adds, commits, and pushes git changes in one command. |
+| `Clone-AllRepos.ps1` | Clones a list of git repos from a text file. |
+| `Install-DevTools.ps1` | Installs a standard dev toolkit (Git, VS Code, Node, Python, etc.) via winget. |
 | `Set-EnvVars.ps1` | Sets environment variables in bulk from a simple config file. |
 | `Backup-DotFiles.ps1` | Backs up PowerShell profile, VS Code settings, git config, etc. |
-| `Remind-Me.ps1` | Shows a popup reminder after a delay or at a specific time. |
-| `Get-FileHashCheck.ps1` | Computes/verifies file checksums (MD5, SHA1, SHA256, SHA512). |
-| `Find-DuplicateFiles.ps1` | Finds duplicate files by content hash, with optional auto-delete. |
-| `Sync-Folders.ps1` | Syncs/mirrors one folder to another using Robocopy. |
+
+</details>
+
+<details>
+<summary><strong>Network</strong></summary>
+
+| Script | Description |
+|---|---|
+| `Test-InternetConnection.ps1` | Monitors connectivity, logs downtime with timestamps. |
+| `Get-PublicIP.ps1` | Shows your public IP and basic geolocation. |
 | `Test-OpenPorts.ps1` | Scans a host for open TCP ports in a given range. |
-| `Backup-Registry.ps1` | Exports a registry key or full registry backup before risky changes. |
-| `Check-WindowsUpdates.ps1` | Checks for available Windows updates. |
+| `Get-WifiPasswords.ps1` | Shows saved WiFi networks and their passwords (admin required). |
 | `Get-USBDeviceHistory.ps1` | Lists currently connected and historical USB devices. |
-| `Get-UptimeReport.ps1` | Reports current uptime and recent shutdown/restart history. |
 
-## Usage
+</details>
 
-Most scripts can be run directly:
+<details>
+<summary><strong>Security & Backups</strong></summary>
 
-```powershell
-.\ScriptName.ps1
-```
+| Script | Description |
+|---|---|
+| `New-SecurePassword.ps1` | Generates cryptographically random strong passwords. |
+| `Backup-Registry.ps1` | Exports a registry key or full registry backup before risky changes. |
 
-Some accept parameters, e.g.:
+</details>
+
+<details>
+<summary><strong>Productivity & Misc</strong></summary>
+
+| Script | Description |
+|---|---|
+| `Start-WorkSession.ps1` | Launches your usual work apps and browser tabs at once. |
+| `Remind-Me.ps1` | Shows a popup reminder after a delay or at a specific time. |
+| `Set-WallpaperFromWeb.ps1` | Downloads a random image and sets it as desktop wallpaper. |
+| `Export-OutlookAttachments.ps1` | Saves all email attachments from an Outlook folder locally. |
+
+</details>
+
+### PowerShell Usage Examples
 
 ```powershell
 .\Backup-Folder.ps1 -SourcePath "C:\Projects\MyApp" -DestinationPath "D:\Backups"
@@ -65,106 +148,74 @@ Some accept parameters, e.g.:
 .\Watch-Folder.ps1 -Path "C:\Scans" -DestinationPath "C:\Scans\Processed"
 ```
 
-## Dependencies
-
-A few scripts rely on external tools that aren't built into Windows:
-- `Merge-PDFs.ps1` requires [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) (`winget install PDFLabs.PDFtk`)
-- `Install-DevTools.ps1` requires `winget` (built into modern Windows 10/11)
-- `Export-OutlookAttachments.ps1` requires Outlook desktop app installed
-- `Get-WifiPasswords.ps1` must be run as Administrator
-- Edit the app/URL/config lists inside `Start-WorkSession.ps1` and `Backup-DotFiles.ps1` to match your own setup before running
-
-## Security Note
-
-`Get-WifiPasswords.ps1` reveals saved network passwords in plain text. Only run it on your own machine, and be careful where you save/share the output.
-
-`Test-OpenPorts.ps1` should only be pointed at hosts you own or have explicit permission to scan — scanning networks you don't control may violate terms of service or local law.
-
-`Find-DuplicateFiles.ps1` with `-DeleteDuplicates` and `Sync-Folders.ps1` with `-Mirror` both delete files. Test on a non-critical folder first, or review the log/dry-run output before trusting them on important data.
-
-Check each script's header comment (`Get-Help .\ScriptName.ps1 -Full`) for full parameter details.
-
-## Note on Execution Policy
-
-If scripts are blocked from running, you may need to allow local scripts for your session:
-
+Every script has a full help entry:
 ```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+Get-Help .\ScriptName.ps1 -Full
 ```
 
-## Disclaimer
+### Dependencies
 
-Scripts that delete, move, or modify files (`Clean-System.ps1`, `Remove-EmptyFolders.ps1`, `Sort-DownloadsFolder.ps1`, etc.) should be reviewed before running on important data. Consider testing on a non-critical folder first.
+| Script | Requires |
+|---|---|
+| `Merge-PDFs.ps1` | [pdftk](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/) — `winget install PDFLabs.PDFtk` |
+| `Install-DevTools.ps1` | `winget` (built into modern Windows 10/11) |
+| `Export-OutlookAttachments.ps1` | Outlook desktop app installed |
+| `Get-WifiPasswords.ps1` | Must be run as Administrator |
 
------------------
+Edit the placeholder app/URL/config lists inside `Start-WorkSession.ps1` and `Backup-DotFiles.ps1` before running.
 
-# toolbox.cmd - All-in-one task dispatcher for CMD environment
+---
 
-One script, every task, called by name. No need to hunt for individual .cmd files anymore.
+## 🖥️ CMD Scripts
 
-## Usage
+All CMD tasks now live in **one dispatcher**: `toolbox.cmd`. Call any task by name, chain multiple together, and pass arguments where needed. Standalone `.cmd` versions of the original scripts are still included at the repo root.
 
 ```cmd
-toolbox.cmd taskname
-toolbox.cmd task1 task2 task3
-toolbox.cmd killtask chrome.exe
 toolbox.cmd flushdns cleartemp emptybin
-```
-
-Run with no arguments (or `toolbox.cmd help`) to see the full list of tasks in the console.
-
-## Examples
-
-```cmd
-:: Single task
-toolbox.cmd flushdns
-
-:: Multiple tasks in one run, in order
-toolbox.cmd cleartemp emptybin restartexplorer
-
-:: Tasks that need arguments
 toolbox.cmd killtask chrome.exe
 toolbox.cmd backup "C:\Projects\MyApp" "D:\Backups"
-toolbox.cmd rename "C:\Photos" "vacation_"
-toolbox.cmd shutdowntimer 30
-toolbox.cmd pinglog 1.1.1.1
-toolbox.cmd mapdrive Z: \\server\share
-toolbox.cmd createtask "DailyBackup" "22:00" "C:\Scripts\backup.exe"
-
-:: Mixing simple and argument-taking tasks together
-toolbox.cmd cleartemp killtask chrome.exe emptybin
+toolbox.cmd help
 ```
 
-## Task categories
+<details>
+<summary><strong>Full task list by category</strong></summary>
 
-- **System Maintenance** - flushdns, cleartemp, emptybin, restartexplorer, sleep, lockpc, logoff, cancelshutdown, adminrights, shutdowntimer, autolock
-- **Network** - checkconn, showip, listports, macaddress, pinglog, mapdrive, unmapdrive, firewallblock, firewallunblock
-- **Files/Folders** - backup, rename, countfiles, findbyext, comparefolders, setreadonly, sethidden
-- **Process/Services** (admin) - killtask, listservices, startservice, stopservice
-- **Scheduling** - createtask, deletetask, listtasks
-- **User Accounts** (admin) - listusers, enableuser, disableuser, forcepwchange
-- **Hardware/System Info** - gpuinfo, raminfo, biosinfo, listprograms
-- **Misc** - screenshot, clip2file, devmgmt, diskmgmt, controlpanel, openworkspace
+**System Maintenance**
+`flushdns` · `cleartemp` · `emptybin` · `restartexplorer` · `sleep` · `lockpc` · `logoff` · `cancelshutdown` · `adminrights` · `shutdowntimer MIN` · `autolock MIN`
 
-Run `toolbox.cmd help` any time for the full list with argument syntax.
+**Network**
+`checkconn` · `showip` · `listports` · `macaddress` · `pinglog HOST` · `mapdrive LETTER PATH` · `unmapdrive LETTER` · `firewallblock IP` · `firewallunblock IP`
 
-## Notes
+**Files / Folders**
+`backup "Src" "DestRoot"` · `rename "Folder" "prefix_"` · `countfiles "Path"` · `findbyext "Path" ".ext"` · `comparefolders "A" "B"` · `setreadonly "Path"` · `sethidden "Path"`
 
-- **Admin required**: firewallblock/unblock, startservice/stopservice, enableuser/disableuser/forcepwchange, and some registry/service operations need "Run as administrator."
-- **Edit before use**: `openworkspace` has placeholder app paths — edit them near the bottom of the script for your own setup.
-- **wmic-based tasks** (`gpuinfo`, `raminfo`, `biosinfo`, `listprograms`) rely on the `wmic` command, which Microsoft has deprecated in newer Windows builds. If it's missing on your system, these will fail — let me know and I can rewrite them using PowerShell CIM cmdlets instead.
-- **checkconn** runs in an infinite loop — press Ctrl+C to stop it. Since it's inside a task dispatcher, run it as your only argument (`toolbox.cmd checkconn`) rather than mixing it with other tasks, since it will block anything queued after it.
-- Tasks that delete, shut down, or modify accounts act immediately once called — double check arguments, especially with `backup`, `rename`, `killtask`, and the account/service management tasks.
+**Process / Services** *(admin)*
+`killtask NAME.exe` · `listservices` · `startservice NAME` · `stopservice NAME`
 
-## Adding your own tasks
+**Scheduling**
+`createtask "Name" "HH:MM" "Program.exe"` · `deletetask "Name"` · `listtasks`
 
-Each task is just a labeled block:
+**User Accounts** *(admin)*
+`listusers` · `enableuser NAME` · `disableuser NAME` · `forcepwchange NAME`
 
-```bat
-:mytask
-echo Doing something...
-goto :eof
-```
+**Hardware / System Info**
+`gpuinfo` · `raminfo` · `biosinfo` · `listprograms`
 
-Add your label anywhere in the file, then add a line in the dispatcher (`:parse` section) if it needs arguments, or just call it directly by name if it doesn't — the generic `call :%task%` fallback picks up any zero-argument label automatically.
+**Misc**
+`screenshot` · `clip2file` · `devmgmt` · `diskmgmt` · `controlpanel` · `openworkspace`
+
+</details>
+
+Full syntax and setup notes: **[`toolbox_README.md`](./toolbox_README.md)**
+
+---
+
+## ⚠️ Safety Notes
+
+- **Admin required** for: `Get-WifiPasswords.ps1`, CMD `firewallblock`/`firewallunblock`, `startservice`/`stopservice`, `enableuser`/`disableuser`/`forcepwchange`.
+- **Scans/network** — `Test-OpenPorts.ps1` and similar should only target hosts you own or have permission to test.
+- **Destructive by design** — review before running on important data: `Clean-System.ps1`, `Remove-EmptyFolders.ps1`, `Sort-DownloadsFolder.ps1`, `Find-DuplicateFiles.ps1 -DeleteDuplicates`, `Sync-Folders.ps1 -Mirror`, and any CMD task that deletes, kills, or shuts down (`backup`, `rename`, `killtask`, account/service management).
+- **wmic deprecation** — CMD's `gpuinfo`, `raminfo`, `biosinfo`, `listprograms` rely on `wmic`, which Microsoft is phasing out on newer Windows builds.
+- `Get-WifiPasswords.ps1` and CMD equivalents reveal saved passwords in plain text — only run locally, be careful sharing output.
+
 
