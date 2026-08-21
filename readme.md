@@ -206,8 +206,6 @@ toolbox.cmd help
 
 </details>
 
-Full syntax and setup notes: **[`toolbox_README.md`](./toolbox_README.md)**
-
 ---
 
 ## ⚠️ Safety Notes
